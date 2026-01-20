@@ -5,11 +5,12 @@ import os
 
 app = Flask(__name__)
 
+
 # Load Model and Scaler
 # Ensure these paths are correct relative to where you run app.py
 # If your model is in a /model folder, change path to 'model/breast_cancer_model.pkl'
-MODEL_PATH = './breast_cancer_model.pkl'
-SCALER_PATH = './scaler.pkl'
+MODEL_PATH = './model/breast_cancer_model.pkl'
+SCALER_PATH = './model/scaler.pkl'
 
 # Helper function to load resources
 def load_resources():
