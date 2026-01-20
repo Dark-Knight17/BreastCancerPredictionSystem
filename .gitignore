@@ -62,3 +62,6 @@ Thumbs.db   # Windows
 *.env
 config.yaml
 config.json
+
+# Submission file
+BreastCancer_hosted_webGUI_link.txt 
