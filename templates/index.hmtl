@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Breast Cancer Prediction</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
+</head>
+<body>
+
+    <div class="container">
+        <h2>Breast Cancer Predictor</h2>
+        
+        <form action="/" method="POST">
+            <div class="form-group">
+                <label for="radius_mean">Radius Mean</label>
+                <input type="number" step="any" name="radius_mean" required placeholder="e.g. 14.2">
+            </div>
+            
+            <div class="form-group">
+                <label for="texture_mean">Texture Mean</label>
+                <input type="number" step="any" name="texture_mean" required placeholder="e.g. 20.5">
+            </div>
+
+            <div class="form-group">
+                <label for="perimeter_mean">Perimeter Mean</label>
+                <input type="number" step="any" name="perimeter_mean" required placeholder="e.g. 95.3">
+            </div>
+
+            <div class="form-group">
+                <label for="area_mean">Area Mean</label>
+                <input type="number" step="any" name="area_mean" required placeholder="e.g. 600.5">
+            </div>
+
+            <div class="form-group">
+                <label for="smoothness_mean">Smoothness Mean</label>
+                <input type="number" step="any" name="smoothness_mean" required placeholder="e.g. 0.09">
+            </div>
+
+            <button type="submit">Predict Diagnosis</button>
+        </form>
+
+        {% if prediction_text %}
+        <div class="result {{ result_class }}">
+            {{ prediction_text }}
+        </div>
+        {% endif %}
+
+        <p class="disclaimer">Educational purpose only. Not for medical use.</p>
+    </div>
+
+</body>
+</html>
