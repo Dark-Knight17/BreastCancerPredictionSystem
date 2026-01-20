@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request
-import pickle
+import joblib
 import numpy as np
 import os
 
@@ -8,16 +8,13 @@ app = Flask(__name__)
 # Load Model and Scaler
 # Ensure these paths are correct relative to where you run app.py
 # If your model is in a /model folder, change path to 'model/breast_cancer_model.pkl'
-MODEL_PATH = './model/breast_cancer_model.pkl'
-SCALER_PATH = './model/scaler.pkl'
+MODEL_PATH = './breast_cancer_model.pkl'
+SCALER_PATH = './scaler.pkl'
 
 # Helper function to load resources
 def load_resources():
     try:
-        with open(MODEL_PATH, 'rb') as f:
-            model = pickle.load(f)
-        with open(SCALER_PATH, 'rb') as f:
-            scaler = pickle.load(f)
+        model, scaler = joblib.load(MODEL_PATH), joblib.load(SCALER_PATH)
         return model, scaler
     except FileNotFoundError:
         print("Error: Model or Scaler file not found. Please run model_building code first.")
@@ -69,4 +66,5 @@ def index():
     return render_template('index.html')
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port, debug=os.environ.get("FLASK_DEBUG") == "1")
